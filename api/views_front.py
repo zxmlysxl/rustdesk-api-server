@@ -229,6 +229,9 @@ def get_all_info():
         if device:
             devices[peer.rid]['rust_user'] = user.username
 
+    for rid in devices.keys():
+        if not devices[rid].get('rust_user', ''):
+            devices[rid]['rust_user'] = _('未登录')
     for k, v in devices.items():
         devices[k]['status'] = _('在线') if (now - datetime.datetime.strptime(v['update_time'], '%Y-%m-%d %H:%M')).seconds <= 120 else _('离线')
     return [v for k, v in devices.items()]
@@ -295,7 +298,7 @@ def share(request):
     sharelinks = ShareLink.objects.filter(Q(uid=request.user.id) & Q(is_used=False) & Q(is_expired=False))
 
     # 省资源：处理已过期请求，不主动定时任务轮询请求，在任意地方请求时，检查是否过期，过期则保存。
-    now = datetime.datetime.now()
+    # now = datetime.datetime.now()
     for sl in sharelinks:
         check_sharelink_expired(sl)
     sharelinks = ShareLink.objects.filter(Q(uid=request.user.id) & Q(is_used=False) & Q(is_expired=False))
@@ -327,7 +330,7 @@ def share(request):
                     # 自己的peers若重叠，需要跳过
                     peers_self_ids = [x.rid for x in RustDeskPeer.objects.filter(Q(uid=request.user.id))]
                     peers_share = RustDeskPeer.objects.filter(Q(rid__in=peers) & Q(uid=sharelink.uid))
-                    peers_share_ids = [x.rid for x in peers_share]
+                    # peers_share_ids = [x.rid for x in peers_share]
 
                     for peer in peers_share:
                         if peer.rid in peers_self_ids:

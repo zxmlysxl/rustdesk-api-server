@@ -6,7 +6,7 @@
 <p align="center">
     <i>一个 python 实现的 Rustdesk API 接口，支持 WebUI 管理</i>
     <br/>
-    <img src ="https://img.shields.io/badge/Version-1.5.0-blueviolet.svg"/>
+    <img src ="https://img.shields.io/badge/Version-1.5.2-blueviolet.svg"/>
     <img src ="https://img.shields.io/badge/Python-3.7|3.8|3.9|3.10|3.11-blue.svg" />
     <img src ="https://img.shields.io/badge/Django-3.2+|4.x-yelow.svg" />
     <br/>
@@ -15,6 +15,9 @@
 </p>
 
 # 1.2.3版本与1.2.6+版本区别
+#### **请使用自定义key，因不填写key、或使用服务端自动生成的key而引起的链接超时或建立链接时间过长的问题，不在本项目解决范围内。**
+
+
 > rustdesk官方在其新版服务端中已[强制要求key](https://rustdesk.com/docs/zh-cn/self-host/rustdesk-server-oss/install/#key)(rustdesk-server版本号大概>=1.1.10)
 
 - rustdesk版本<=1.2.3, 服务端请配合使用rustdesk-server<=1.1.10
